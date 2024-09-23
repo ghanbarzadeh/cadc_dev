@@ -5,21 +5,15 @@ import cv2
 import load_calibration
 from lidar_utils import lidar_utils
 
-frame = 90
-cam = '0'
-seq = '0027'
+frame = 00
+cam = '4'
 DISTORTED = False
 MOVE_FORWARD = True
-BASE = "/media/matthew/WAVELAB_2TB/winter/"
+BASE = "cadc_download/"
 
-if DISTORTED:
-  path_type = 'raw'
-else:
-  path_type = 'processed'
-
-lidar_path = BASE + "data/" + seq + "/" + path_type + "/lidar_points/data/" + format(frame, '010') + ".bin";
+lidar_path = BASE + "labeled/" + "lidar_points/data/" + format(frame, '010') + ".bin";
 calib_path = BASE + "calib/";
-img_path = BASE + "data/" + seq + "/" + path_type + "/image_0" + cam + "/data/" + format(frame, '010') + ".png";
+img_path = BASE + "labeled/" + "/image_0" + cam + "/data/" + format(frame, '010') + ".png";
 
 # load calibration dictionary
 calib = load_calibration.load_calibration(calib_path);
@@ -49,6 +43,6 @@ while True:
 
   if MOVE_FORWARD:
     frame += 1;
-    lidar_path = BASE + "data/" + seq + "/" + path_type + "/lidar_points/data/" + format(frame, '010') + ".bin"
-    img_path = BASE + "data/" + seq + "/" + path_type + "/image_0" + cam + "/data/" + format(frame, '010') + ".png"
+    lidar_path = BASE + "labeled/" + "lidar_points/data/" + format(frame, '010') + ".bin";
+    img_path = BASE + "labeled/" + "/image_0" + cam + "/data/" + format(frame, '010') + ".png";
     img = cv2.imread(img_path)

@@ -6,29 +6,20 @@ import cv2
 import load_calibration
 from scipy.spatial.transform import Rotation as R
 
-frame = 26
-cam = '0'
-seq = '0010'
+frame = 00
+cam = '4'
 DISTORTED = False
-MOVE_FORWARD = False
-# BASE = "/media/matthew/WAVELAB_2TB/winter/data/"
-BASE = "/media/matthew/MOOSE-4TB/2019_02_27/"
-CALIB_BASE = "/media/matthew/WAVELAB_2TB/winter/"
+MOVE_FORWARD = True
+BASE = "cadc_download/"
 
-if DISTORTED:
-  path_type = 'raw'
-else:
-  path_type = 'processed'
-
-lidar_path = BASE + seq + "/" + path_type + "/lidar_points/data/" + format(frame, '010') + ".bin";
-calib_path = CALIB_BASE + "calib/";
-img_path = BASE + seq + "/" + path_type + "/image_0" + cam + "/data/" + format(frame, '010') + ".png";
-
-annotations_file = BASE + seq + "/3d_ann.json";
+lidar_path = BASE + "labeled/" + "lidar_points/data/" + format(frame, '010') + ".bin";
+calib_path = BASE + "calib/";
+img_path = BASE + "labeled/" + "/image_0" + cam + "/data/" + format(frame, '010') + ".png";
+annotations_path = BASE + "3d_ann.json";
 
 # Load 3d annotations
 annotations_data = None
-with open(annotations_file) as f:
+with open(annotations_path) as f:
     annotations_data = json.load(f)
 
 calib = load_calibration.load_calibration(calib_path);
