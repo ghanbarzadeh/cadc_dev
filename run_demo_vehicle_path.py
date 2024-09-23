@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 import load_novatel_data, convert_novatel_to_pose
 
-novatel_path = '/media/matthew/WAVELAB_2TB/winter/data/0027/processed/novatel/data/';
+novatel_path = 'cadc_download/labeled/novatel/data/';
 
 novatel = load_novatel_data.load_novatel_data(novatel_path);
 poses = convert_novatel_to_pose.convert_novatel_to_pose(novatel);
@@ -15,7 +15,7 @@ poses = convert_novatel_to_pose.convert_novatel_to_pose(novatel);
 mpl.rcParams['legend.fontsize'] = 10
 
 fig = plt.figure()
-ax = fig.gca(projection='3d')
+ax = fig.add_subplot(projection='3d')
 
 ax.set_title('Vehicle path')
 ax.set_xlabel('East (m)')
